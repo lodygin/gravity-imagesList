@@ -1,0 +1,17 @@
+<div class="modal-post" >
+
+  <div (click)="closeModal($event)" class="backdrop">
+    <div class="modal">
+      <div class="content-column">
+        <div class="img-block">
+          <img src="{{ post.link }}" alt="">
+          <small class="post-data">{{ post.postDate | date }}</small>
+        </div>
+        <app-form-add-comment></app-form-add-comment>
+      </div>
+      <div class="comments-column"></div>
+    </div>
+  </div>
+
+</div>
+

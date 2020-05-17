@@ -1,0 +1,28 @@
+@import "src/styles/skins";
+
+.alert-wrap {
+  position: fixed;
+  top: 5%;
+  right: 10%;
+  max-width: 200px;
+  padding: 15px;
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 3px;
+
+  &.alert-success {
+    background-color: $detail-color;
+  }
+
+  &.alert-warning {
+    background-color: $decoration-color;
+  }
+
+  &.alert-danger {
+    background-color: $accent-color;
+  }
+
+  p {
+    color: #fff;
+  }
+}

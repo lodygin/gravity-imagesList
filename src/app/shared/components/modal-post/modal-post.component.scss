@@ -1,0 +1,63 @@
+@import "src/styles/skins";
+
+.modal-post {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  cursor: auto;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background: rgba(#000, 0.7);
+}
+
+.modal {
+  padding: 20px;
+  width: 60vw;
+  height: 500px;
+  max-width: 1170px;
+  background: #fff;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  box-shadow:
+    0px 2px 1px rgba($light-color, 0.7),
+    0px 2px 7px rgba($decoration-color, 0.3),
+    0px 5px 80px rgba($accent-color, 0.2);
+}
+
+.content-column {
+  height: 100%;
+  flex: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img-block {
+
+  img {
+    width: 100%;
+    height: 270px;
+    object-fit: contain;
+  }
+}
+
+.post-data {
+  font-size: 14px;
+  color: rgba($dark-color, 0.8);
+}
+
+.comments-column {
+  border: 1px solid black;
+  height: 100%;
+  flex: 40%;
+}

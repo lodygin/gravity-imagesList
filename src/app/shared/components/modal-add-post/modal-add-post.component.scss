@@ -1,0 +1,161 @@
+@import "src/styles/skins";
+
+.modal-addPost {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.backdrop {
+  background: rgba(#000, 0.7);
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  padding: 20px;
+  width: 500px;
+  height: 180px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  box-shadow:
+    0px 2px 1px rgba($light-color, 0.7),
+    0px 2px 7px rgba($decoration-color, 0.3),
+    0px 5px 80px rgba($accent-color, 0.2);
+}
+
+input,
+label,
+small {
+  width: 100%;
+  display: block;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
+small {
+  color: $accent-color;
+}
+
+label {
+  color: rgba($gray-color, 0.8);
+}
+
+input {
+  padding: 5px 10px;
+  color: rgba($gray-color, 0.8);
+  outline: none;
+  border: 1px solid rgba($gray-color, 0.3);
+}
+
+.submit-btn {
+  font-family: var(--main-font);
+  outline: none;
+  border: none;
+  width: 125px;
+  height: 35px;
+  margin-top: 20px;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: $accent-color;
+  color: #fff;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $gray-color;
+  }
+}
+
+.form-control {
+
+  &.invalid {
+
+    input {
+      border-color: $accent-color;
+    }
+
+    label {
+      color: $accent-color;
+    }
+  }
+}
+
+.loader {}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  top: -2px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 16.5px;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: $light-color;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 4px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 4px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 16px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 28px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(12px, 0);
+  }
+}

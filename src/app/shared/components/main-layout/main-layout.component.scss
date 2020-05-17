@@ -1,0 +1,52 @@
+@import "src/styles/skins";
+
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.addPost-btn {
+  position: fixed;
+  top: 80%;
+  left: 85%;
+  z-index: 5;
+  outline: none;
+  cursor: pointer;
+
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px #fff solid;
+  background: linear-gradient(-45deg, $decoration-color 0%, $detail-color 100%);
+  box-shadow:
+    0px 2px 1px rgba($light-color, 1),
+    0px 2px 7px rgba($decoration-color, 0.7),
+    0px 5px 80px rgba($accent-color, 0.4);
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+  }
+
+  div:nth-child(1) {
+    width: 5px;
+    height: 40px;
+    background-color: #fff;
+  }
+
+  div:nth-child(2) {
+    width: 40px;
+    height: 5px;
+    background-color: #fff;
+  }
+}

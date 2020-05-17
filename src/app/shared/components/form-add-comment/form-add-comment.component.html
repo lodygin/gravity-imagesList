@@ -1,0 +1,36 @@
+<div class="form-block">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-control">
+
+      <label for="userName"></label>
+      <input
+        type="text"
+        id="userName"
+        formControlName="userName"
+      >
+      <div class="validation" *ngIf="form.get('userName').touched && form.get('userName').invalid">
+        <small>
+          Write your name
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="comment"></label>
+      <input
+        type="text"
+        id="comment"
+        formControlName="comment"
+      >
+      <div class="validation" *ngIf="form.get('comment').touched && form.get('comment').invalid">
+        <small>
+          Write your name
+        </small>
+      </div>
+    </div>
+
+    <button type="submit">Leave a comment</button>
+
+  </form>
+</div>

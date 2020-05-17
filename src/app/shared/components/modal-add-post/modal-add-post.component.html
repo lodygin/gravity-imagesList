@@ -1,0 +1,55 @@
+<div class="modal-addPost">
+  <div class="backdrop" (click)="close.emit()"></div>
+
+  <div class="modal">
+
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <div
+        class="form-control"
+        [ngClass]="{invalid: form.get('link').touched && form.get('link').invalid || linkError}"
+      >
+
+        <label for="link">Image link:</label>
+        <input
+          [attr.disabled]="loadFlag ? '' : null"
+          type="text"
+          id="link"
+          formControlName="link"
+          (keydown)="changeErrorFlag()"
+        >
+
+        <div class="validation" *ngIf="form.get('link').touched && form.get('link').invalid">
+          <small
+            *ngIf="form.get('link').errors.required"
+          >
+            Did you forget link?
+          </small>
+        </div>
+        <small
+          *ngIf="linkError && !form.get('link').errors"
+        >
+          Is it correct image link?
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid || loadFlag" class="submit-btn">
+        <span *ngIf="loadFlag === false; else loading">Add Image</span>
+        <ng-template #loading>
+          <div class="loader">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </ng-template>
+      </button>
+
+
+    </form>
+
+  </div>
+</div>
+
+

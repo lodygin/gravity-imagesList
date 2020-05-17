@@ -1,0 +1,21 @@
+<div class="explore" *ngIf="posts.length; else loading">
+
+  <router-outlet></router-outlet>
+
+  <div class="container">
+    <div class="explore-grid">
+      <a  [routerLink]="['/explore', 'p', post.id]" *ngFor="let post of posts" class="post-link">
+        <img src="{{ post.link }}" alt="">
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="loader">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>
+</ng-template>
+
+
