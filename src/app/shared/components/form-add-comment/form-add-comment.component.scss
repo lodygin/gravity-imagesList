@@ -1,9 +1,11 @@
+@import "src/styles/skins";
+
 .form-block {
 
-}
-
-.form-control {
-  position: relative;
+  //form {
+  //  display: flex;
+  //  flex-direction: column;
+  //}
 }
 
 label,
@@ -11,5 +13,67 @@ input,
 button,
 .validation {
   width: 100%;
+  font-size: 14px;
+  display: block;
 }
 
+small {
+  color: $accent-color;
+}
+
+label {
+  color: rgba($gray-color, 0.8);
+}
+
+input {
+  padding: 5px 10px;
+  color: rgba($gray-color, 0.8);
+  outline: none;
+  border: 1px solid rgba($gray-color, 0.4);
+
+  &::placeholder {
+    color: rgba($gray-color, 0.4);
+  }
+}
+
+.form-control {
+  position: relative;
+  height: 50px;
+
+  &.invalid {
+
+    input {
+      border-color: $accent-color;
+
+      &::placeholder {
+        color: rgba($accent-color, 0.4);
+      }
+    }
+
+  }
+}
+
+.submit-btn {
+  font-family: var(--main-font);
+  outline: none;
+  border: none;
+  //height: 35px;
+  font-size: 16px;
+  line-height: 35px;
+  cursor: pointer;
+  background-color: $accent-color;
+  color: #fff;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $gray-color;
+  }
+}
+
+.validation {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

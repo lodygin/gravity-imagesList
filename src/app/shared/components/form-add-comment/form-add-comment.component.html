@@ -1,36 +1,64 @@
 <div class="form-block">
   <form [formGroup]="form" (ngSubmit)="submit()">
 
-    <div class="form-control">
+    <div class="form-control"
+       [ngClass]="{invalid: form.get('userName').touched && form.get('userName').invalid}"
+    >
 
       <label for="userName"></label>
       <input
         type="text"
         id="userName"
         formControlName="userName"
+        placeholder="Your name"
       >
       <div class="validation" *ngIf="form.get('userName').touched && form.get('userName').invalid">
-        <small>
+        <small *ngIf="form.get('userName').errors.emptyField">
+          The name field must contain characters
+        </small>
+        <small *ngIf="form.get('userName').errors.required">
           Write your name
+        </small>
+        <small *ngIf="form.get('userName').errors.minlength">
+          Minimum length is {{ form.get('userName').errors.minlength.requiredLength }} characters.
+          Current length is {{ form.get('userName').errors.minlength.actualLength }}
+          {{ form.get('userName').errors.minlength.actualLength === 1 ? 'character' : 'characters' }}
+        </small>
+        <small *ngIf="form.get('userName').errors.maxlength">
+          Maximum length is {{ form.get('userName').errors.maxlength.requiredLength }} characters.
+          Current length is {{ form.get('userName').errors.maxlength.actualLength }}
+          {{ form.get('userName').errors.maxlength.actualLength === 1 ? 'character' : 'characters' }}
         </small>
       </div>
     </div>
 
-    <div class="form-control">
+    <div class="form-control"
+       [ngClass]="{invalid: form.get('comment').touched && form.get('comment').invalid}"
+    >
       <label for="comment"></label>
       <input
         type="text"
         id="comment"
         formControlName="comment"
+        placeholder="Your comment"
       >
+
       <div class="validation" *ngIf="form.get('comment').touched && form.get('comment').invalid">
-        <small>
-          Write your name
+        <small *ngIf="form.get('comment').errors.emptyField">
+          The comment field must contain characters
+        </small>
+        <small *ngIf="form.get('comment').errors.required">
+          You forgot to write a comment
+        </small>
+        <small *ngIf="form.get('comment').errors.maxlength">
+          Maximum length is {{ form.get('comment').errors.maxlength.requiredLength }} characters.
+          Current length is {{ form.get('comment').errors.maxlength.actualLength }}
+          {{ form.get('comment').errors.maxlength.actualLength === 1 ? 'character' : 'characters' }}
         </small>
       </div>
     </div>
 
-    <button type="submit">Leave a comment</button>
+    <button type="submit" class="submit-btn" [disabled]="form.invalid">Leave a comment</button>
 
   </form>
 </div>

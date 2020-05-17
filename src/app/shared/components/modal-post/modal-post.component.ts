@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Post} from "../../interfaces";
 import {Subscription} from "rxjs";
@@ -15,11 +15,13 @@ export class ModalPostComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {
   }
 
   ngOnInit(): void {
+    this.renderer.addClass(document.body, 'modal-open')
     this.subPost = this.route.data
       .subscribe(data => {
         this.post = data.post
@@ -34,6 +36,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.renderer.removeClass(document.body, 'modal-open')
     this.subPost.unsubscribe()
   }
 }

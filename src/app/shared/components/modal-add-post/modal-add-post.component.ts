@@ -37,14 +37,15 @@ export class ModalAddPostComponent implements OnInit, OnDestroy {
       return
     }
     this.loadFlag = true
-    this.subCheckImage = this.checkImage(this.form.value.link)
+    const link = this.form.value.link.trim()
+    this.subCheckImage = this.checkImage(link)
       .pipe(
         delay(200)
       )
       .subscribe(
         () => {
           const post: Post = {
-            ...this.form.value,
+            link: link,
             postDate: new Date()
           }
 

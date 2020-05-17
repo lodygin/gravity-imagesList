@@ -45,9 +45,8 @@
 .img-block {
 
   img {
-    width: 100%;
-    height: 270px;
     object-fit: contain;
+    height: 270px;
   }
 }
 
@@ -57,7 +56,6 @@
 }
 
 .comments-column {
-  border: 1px solid black;
   height: 100%;
   flex: 40%;
 }

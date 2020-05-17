@@ -11,9 +11,10 @@ import {HeaderComponent} from './header/header.component';
 import {ModalPostComponent} from './shared/components/modal-post/modal-post.component';
 import {RefDirective} from "./shared/ref.directive";
 import {ModalAddPostComponent} from "./shared/components/modal-add-post/modal-add-post.component";
-import { AlertComponent } from './shared/components/alert/alert.component';
+import {AlertComponent} from './shared/components/alert/alert.component';
 import {HttpClientModule} from "@angular/common/http";
-import { FormAddCommentComponent } from './shared/components/form-add-comment/form-add-comment.component';
+import {FormAddCommentComponent} from './shared/components/form-add-comment/form-add-comment.component';
+import {PostCommentsComponent} from './shared/components/post-comments/post-comments.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormAddCommentComponent } from './shared/components/form-add-comment/fo
     RefDirective,
     ModalAddPostComponent,
     AlertComponent,
-    FormAddCommentComponent
+    FormAddCommentComponent,
+    PostCommentsComponent
   ],
   imports: [
     BrowserModule,

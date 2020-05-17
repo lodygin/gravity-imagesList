@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {FbCreateResponse, Post} from "../interfaces";
 import {Observable, Subject} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,10 @@ export class PostsService {
           }
         })
       )
+  }
+
+  createComment(id: string, comment: object): Observable<Comment> {
+    return this.http.post<Comment>(`${environment.fbDbUrl}/posts/${id}/comments.json`, comment);
   }
 
 }
