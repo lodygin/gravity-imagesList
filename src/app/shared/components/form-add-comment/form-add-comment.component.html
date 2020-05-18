@@ -15,7 +15,7 @@
       >
       <div class="validation" *ngIf="form.get('userName').touched && form.get('userName').invalid">
         <small *ngIf="form.get('userName').errors.emptyField">
-          The name field must contain characters
+          The name field must contains characters
         </small>
         <small *ngIf="form.get('userName').errors.required">
           Write your name
@@ -42,7 +42,7 @@
 
       <div class="validation" *ngIf="form.get('comment').touched && form.get('comment').invalid">
         <small *ngIf="form.get('comment').errors.emptyField">
-          The comment field must contain characters
+          The comment field must contains characters
         </small>
         <small *ngIf="form.get('comment').errors.required">
           You forgot to write a comment

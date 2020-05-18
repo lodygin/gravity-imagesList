@@ -11,8 +11,8 @@ import {Subscription} from "rxjs";
 export class ModalPostComponent implements OnInit, OnDestroy {
 
   post: Post
-  subPost: Subscription
   comments: Comment[]
+  subPost: Subscription
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,6 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   }
 
   closeModal(event) {
-    console.log(event)
     if (event.target.classList.contains('backdrop')) {
       this.router.navigate(['/explore'])
     }

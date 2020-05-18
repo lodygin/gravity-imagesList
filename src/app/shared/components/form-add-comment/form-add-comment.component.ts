@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params} from "@angular/router";
-import {switchMap} from "rxjs/operators";
+import {delay, switchMap} from "rxjs/operators";
 import {CustomValidators} from "../../custom.validators";
 import {CommentsService} from "../../services/comments.service";
 import {Comment} from "../../interfaces"
@@ -55,7 +55,8 @@ export class FormAddCommentComponent implements OnInit {
               comment: this.form.value.comment.trim(),
               commentDate: new Date()
             })
-        })
+        }),
+        delay(100)
       )
       .subscribe((comment: Comment) => {
         this.commentsService.newComment$.next(comment)
