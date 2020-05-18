@@ -13,11 +13,13 @@ export class PostsService {
 
   newPost$ = new Subject<Post>()
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient
+  ) {
   }
 
   create(post: Post): Observable<Post> {
-    return this.http.post(`${environment.fbDbUrl}/posts.json`, post)
+    return this.http.post<FbCreateResponse>(`${environment.fbDbUrl}/posts.json`, post)
       .pipe(
         map((response: FbCreateResponse) => {
 
@@ -57,14 +59,10 @@ export class PostsService {
           return {
             ...post,
             id,
-            date: new Date(post.postDate)
+            postDate: new Date(post.postDate)
           }
         })
       )
-  }
-
-  createComment(id: string, comment: object): Observable<Comment> {
-    return this.http.post<Comment>(`${environment.fbDbUrl}/posts/${id}/comments.json`, comment);
   }
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Comment} from "../../interfaces";
+import {CommentsService} from "../../services/comments.service";
 
 @Component({
   selector: 'app-post-comments',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostCommentsComponent implements OnInit {
 
-  constructor() { }
+  @Input() comments: Comment[] = []
+
+  constructor(
+    private commentsService: CommentsService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.commentsService.newComment$
+      .subscribe((comment: Comment) => {
+        this.comments.unshift(comment)
+      })
   }
 
 }

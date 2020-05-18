@@ -1,37 +1,19 @@
-<div class="post-comments">
-  <div class="comment-block">
+<div class="post-comments" *ngIf="comments.length; else emptyComments">
+  <div
+    class="comment-block"
+    *ngFor="let comment of comments"
+  >
     <div class="comment-header">
-      <div class="comment-user">Volodya</div>
-      <div class="comment-data">10.10.10</div>
+      <div class="comment-user">{{ comment.userName }}</div>
+      <div class="comment-data">{{ comment.commentDate | date: 'H:mm | d.MM.yy' }}</div>
     </div>
-    <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi asperiores at consequuntur corporis dolorem expedita harum hic illo iusto, minima nemo, omnis perspiciatis quasi ratione soluta sunt veritatis voluptatibus.</div>
-  </div>
-  <div class="comment-block">
-    <div class="comment-header">
-      <div class="comment-user">Volodya</div>
-      <div class="comment-data">10.10.10</div>
-    </div>
-    <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi asperiores at consequuntur corporis dolorem expedita harum hic illo iusto, minima nemo, omnis perspiciatis quasi ratione soluta sunt veritatis voluptatibus.</div>
-  </div>
-  <div class="comment-block">
-    <div class="comment-header">
-      <div class="comment-user">Volodya</div>
-      <div class="comment-data">10.10.10</div>
-    </div>
-    <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi asperiores at consequuntur corporis dolorem expedita harum hic illo iusto, minima nemo, omnis perspiciatis quasi ratione soluta sunt veritatis voluptatibus.</div>
-  </div>
-  <div class="comment-block">
-    <div class="comment-header">
-      <div class="comment-user">Volodya</div>
-      <div class="comment-data">10.10.10</div>
-    </div>
-    <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi asperiores at consequuntur corporis dolorem expedita harum hic illo iusto, minima nemo, omnis perspiciatis quasi ratione soluta sunt veritatis voluptatibus.</div>
-  </div>
-  <div class="comment-block">
-    <div class="comment-header">
-      <div class="comment-user">Volodya</div>
-      <div class="comment-data">10.10.10</div>
-    </div>
-    <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi asperiores at consequuntur corporis dolorem expedita harum hic illo iusto, minima nemo, omnis perspiciatis quasi ratione soluta sunt veritatis voluptatibus.</div>
+    <div class="comment-text">{{ comment.comment }}</div>
   </div>
 </div>
+
+
+<ng-template #emptyComments>
+  <div class="emptyComments">
+    Comments ran away :(
+  </div>
+</ng-template>

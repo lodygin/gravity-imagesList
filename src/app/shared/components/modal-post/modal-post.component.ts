@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Post} from "../../interfaces";
+import {Comment, Post} from "../../interfaces";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -12,6 +12,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
 
   post: Post
   subPost: Subscription
+  comments: Comment[]
 
   constructor(
     private route: ActivatedRoute,
@@ -23,13 +24,16 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'modal-open')
     this.subPost = this.route.data
-      .subscribe(data => {
-        this.post = data.post
-      }
+      .subscribe(
+        data => {
+          this.post = data.post
+          this.comments = data.comments.sort((a, b) => b.commentDate.getTime() - a.commentDate.getTime())
+        }
     )
   }
 
   closeModal(event) {
+    console.log(event)
     if (event.target.classList.contains('backdrop')) {
       this.router.navigate(['/explore'])
     }

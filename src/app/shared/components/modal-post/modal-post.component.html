@@ -5,12 +5,14 @@
       <div class="content-column">
         <div class="img-block">
           <img src="{{ post.link }}" alt="">
-          <small class="post-data">{{ post.postDate | date }}</small>
+          <small class="post-data">{{ post.postDate | date: 'longDate' }}</small>
         </div>
         <app-form-add-comment></app-form-add-comment>
       </div>
       <div class="comments-column">
-        <app-post-comments></app-post-comments>
+        <app-post-comments
+          [comments]="comments"
+        ></app-post-comments>
       </div>
     </div>
   </div>

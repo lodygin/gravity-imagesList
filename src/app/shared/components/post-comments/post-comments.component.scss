@@ -1,5 +1,13 @@
 @import "src/styles/skins";
 
+.emptyComments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba($gray-color, 0.4);
+}
+
 .post-comments {
   padding: 0 0 0 20px;
   overflow: auto;
@@ -9,6 +17,10 @@
 .comment-block {
   position: relative;
   margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &::after {
     content: '';
@@ -26,18 +38,28 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3px;
-  font-size: 16px;
+  font-size: 14px;
 }
 .comment-data {
   font-size: 12px;
   color: rgba($decoration-color, 0.8);
+  flex: 0 0 35%;
+  text-align: right;
 }
 
 .comment-user {
+  text-overflow: ellipsis;
+  overflow: hidden;
   font-weight: bold;
+  flex: 0 0 65%;
+  padding-right: 10px;
 }
 
 .comment-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  max-width: 100%;
   color: $gray-color;
   font-size: 14px;
 }

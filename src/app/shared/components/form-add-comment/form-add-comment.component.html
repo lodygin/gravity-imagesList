@@ -11,6 +11,7 @@
         id="userName"
         formControlName="userName"
         placeholder="Your name"
+        [attr.disabled]="loadFlag ? '' : null"
       >
       <div class="validation" *ngIf="form.get('userName').touched && form.get('userName').invalid">
         <small *ngIf="form.get('userName').errors.emptyField">
@@ -18,11 +19,6 @@
         </small>
         <small *ngIf="form.get('userName').errors.required">
           Write your name
-        </small>
-        <small *ngIf="form.get('userName').errors.minlength">
-          Minimum length is {{ form.get('userName').errors.minlength.requiredLength }} characters.
-          Current length is {{ form.get('userName').errors.minlength.actualLength }}
-          {{ form.get('userName').errors.minlength.actualLength === 1 ? 'character' : 'characters' }}
         </small>
         <small *ngIf="form.get('userName').errors.maxlength">
           Maximum length is {{ form.get('userName').errors.maxlength.requiredLength }} characters.
@@ -41,6 +37,7 @@
         id="comment"
         formControlName="comment"
         placeholder="Your comment"
+        [attr.disabled]="loadFlag ? '' : null"
       >
 
       <div class="validation" *ngIf="form.get('comment').touched && form.get('comment').invalid">
@@ -58,7 +55,19 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn" [disabled]="form.invalid">Leave a comment</button>
+    <button type="submit" class="submit-btn" [disabled]="form.invalid || loadFlag">
+      <span *ngIf="loadFlag === false; else loading">Leave a comment</span>
+      <ng-template #loading>
+        <div class="loader">
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </ng-template>
+    </button>
 
   </form>
 </div>

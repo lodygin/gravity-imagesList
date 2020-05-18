@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PostsService} from "../../services/posts.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {switchMap} from "rxjs/operators";
 import {CustomValidators} from "../../custom.validators";
+import {CommentsService} from "../../services/comments.service";
+import {Comment} from "../../interfaces"
 
 @Component({
   selector: 'app-form-add-comment',
@@ -13,9 +14,10 @@ import {CustomValidators} from "../../custom.validators";
 export class FormAddCommentComponent implements OnInit {
 
   form: FormGroup
+  loadFlag: boolean = false
 
   constructor(
-    private postsService: PostsService,
+    private commentsService: CommentsService,
     private route: ActivatedRoute
   ) {
   }
@@ -24,8 +26,7 @@ export class FormAddCommentComponent implements OnInit {
     this.form = new FormGroup({
       userName: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(15)
+        Validators.maxLength(25)
       ], [
         CustomValidators.emptyField
       ]),
@@ -43,16 +44,24 @@ export class FormAddCommentComponent implements OnInit {
       return
     }
 
+    this.loadFlag = true
     this.route.params
       .pipe(
         switchMap((params: Params) => {
-          return this.postsService.createComment(params['id'], this.form.value)
+          return this.commentsService.create(
+            params['id'],
+            {
+              userName: this.form.value.userName.trim(),
+              comment: this.form.value.comment.trim(),
+              commentDate: new Date()
+            })
         })
       )
-      .subscribe(res => {
-        console.log(res)
+      .subscribe((comment: Comment) => {
+        this.commentsService.newComment$.next(comment)
+        this.loadFlag = false
+        this.form.reset()
       })
 
-    this.form.reset()
   }
 }

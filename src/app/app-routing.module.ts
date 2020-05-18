@@ -4,6 +4,7 @@ import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.c
 import {ExploreComponent} from "./explore/explore.component";
 import {ModalPostComponent} from "./shared/components/modal-post/modal-post.component";
 import {PostResolver} from "./shared/post.resolver";
+import {CommentsResolver} from "./shared/comments.resolver";
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
             path: 'p/:id',
             component: ModalPostComponent,
             resolve: {
-              post: PostResolver
+              post: PostResolver,
+              comments: CommentsResolver
             }
           }
         ]

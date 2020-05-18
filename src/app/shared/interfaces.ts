@@ -2,12 +2,12 @@ export interface Comment {
   userName: string;
   comment: string;
   commentDate: Date;
+  id?: string;
 }
 
 export interface Post {
   link: string;
   postDate: Date;
-  comments?: Comment[];
   id?: string;
 }
 
