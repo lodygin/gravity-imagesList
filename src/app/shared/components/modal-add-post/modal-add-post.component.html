@@ -1,7 +1,16 @@
 <div class="modal-addPost">
-  <div class="backdrop" (click)="close.emit()"></div>
+  <div
+    class="backdrop"
+    (click)="closeModal()"
+    [@backdrop]
+    *ngIf="isShowComponent"
+  ></div>
 
-  <div class="modal">
+  <div
+    class="modal"
+    [@modalWindow]
+    *ngIf="isShowComponent"
+  >
 
     <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <div

@@ -1,21 +1,26 @@
-<div class="modal-post" >
+<div class="modal-post">
 
-  <div (click)="closeModal($event)" class="backdrop">
-    <div class="modal">
-      <div class="content-column">
-        <div class="img-block">
-          <img src="{{ post.link }}" alt="">
-          <small class="post-data">{{ post.postDate | date: 'longDate' }}</small>
-        </div>
-        <app-form-add-comment></app-form-add-comment>
+  <div
+    (click)="closeModal()"
+    [@backdrop]
+    class="backdrop"
+    *ngIf="isShowComponent"
+  ></div>
+  <div class="modal" [@modalWindow] *ngIf="isShowComponent">
+    <div class="content-column">
+      <div class="img-block">
+        <img src="{{ post.link }}" alt="">
+        <small class="post-data">{{ post.postDate | date: 'longDate' }}</small>
       </div>
-      <div class="comments-column">
-        <app-post-comments
-          [comments]="comments"
-        ></app-post-comments>
-      </div>
+      <app-form-add-comment></app-form-add-comment>
+    </div>
+    <div class="comments-column">
+      <app-post-comments
+        [comments]="comments"
+      ></app-post-comments>
     </div>
   </div>
+
 
 </div>
 

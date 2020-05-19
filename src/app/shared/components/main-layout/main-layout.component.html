@@ -1,14 +1,17 @@
 <ng-template appRef></ng-template>
 
-<app-alert></app-alert>
-
 <app-header></app-header>
 
 <div class="content">
   <router-outlet></router-outlet>
 </div>
 
-<button class="addPost-btn" (click)="showAddImg()">
+<button
+  class="addPost-btn"
+  (click)="showModalAddPost()"
+  [@button]
+  *ngIf="isShowButton"
+>
   <div></div>
   <div></div>
 </button>

@@ -1,18 +1,22 @@
 import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment, Post} from "../../interfaces";
-import {Subscription} from "rxjs";
+import {Subscription, timer} from "rxjs";
+import {backdrop, modalWindow} from "../../modal-window.animation";
 
 @Component({
   selector: 'modal-post',
   templateUrl: './modal-post.component.html',
-  styleUrls: ['./modal-post.component.scss']
+  styleUrls: ['./modal-post.component.scss'],
+  animations: [backdrop, modalWindow]
 })
 export class ModalPostComponent implements OnInit, OnDestroy {
+  isShowComponent: boolean = true
 
   post: Post
   comments: Comment[]
   subPost: Subscription
+  subTimer: Subscription
 
   constructor(
     private route: ActivatedRoute,
@@ -29,17 +33,20 @@ export class ModalPostComponent implements OnInit, OnDestroy {
           this.post = data.post
           this.comments = data.comments.sort((a, b) => b.commentDate.getTime() - a.commentDate.getTime())
         }
-    )
+      )
   }
 
-  closeModal(event) {
-    if (event.target.classList.contains('backdrop')) {
+  closeModal() {
+    this.isShowComponent = false
+    this.subTimer = timer(250).subscribe(() => {
       this.router.navigate(['/explore'])
-    }
+    })
+
   }
 
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'modal-open')
     this.subPost.unsubscribe()
+    this.subTimer.unsubscribe()
   }
 }

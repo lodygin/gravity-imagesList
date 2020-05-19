@@ -4,11 +4,13 @@ import {Post} from "../../interfaces";
 import {Observable, Subscription} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {delay} from "rxjs/operators";
+import {backdrop, modalWindow} from "../../modal-window.animation";
 
 @Component({
   selector: 'app-modal-add-img',
   templateUrl: './modal-add-post.component.html',
-  styleUrls: ['./modal-add-post.component.scss']
+  styleUrls: ['./modal-add-post.component.scss'],
+  animations: [backdrop, modalWindow]
 })
 export class ModalAddPostComponent implements OnInit, OnDestroy {
 
@@ -17,7 +19,7 @@ export class ModalAddPostComponent implements OnInit, OnDestroy {
   form: FormGroup
   linkError: boolean = false
   loadFlag: boolean = false
-  subCheckImage: Subscription
+  isShowComponent = true
 
   constructor(
     private postsService: PostsService,
@@ -38,7 +40,7 @@ export class ModalAddPostComponent implements OnInit, OnDestroy {
     }
     this.loadFlag = true
     const link = this.form.value.link.trim()
-    this.subCheckImage = this.checkImage(link)
+    this.checkImage(link)
       .pipe(
         delay(200)
       )
@@ -51,7 +53,7 @@ export class ModalAddPostComponent implements OnInit, OnDestroy {
 
           this.postsService.create(post).subscribe(() => {
             this.loadFlag = false
-            return this.close.emit()
+            this.closeModal()
           })
         },
         () => {
@@ -81,9 +83,13 @@ export class ModalAddPostComponent implements OnInit, OnDestroy {
     }
   }
 
+  closeModal() {
+    this.isShowComponent = false
+    this.close.emit()
+  }
+
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'modal-open')
-    this.subCheckImage.unsubscribe()
   }
 }
 
