@@ -1,5 +1,11 @@
 @import "src/styles/skins";
 
+:host {
+  @media (max-width: 767.99px) {
+    height: calc(100% - 160px - 225px);
+  }
+}
+
 .emptyComments {
   display: flex;
   justify-content: center;
@@ -12,6 +18,9 @@
   padding: 0 0 0 20px;
   overflow: auto;
   height: 100%;
+  @media (max-width: 767.99px) {
+    padding: 5px 5px 10px;
+  }
 }
 
 .comment-block {

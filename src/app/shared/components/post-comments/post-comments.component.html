@@ -1,6 +1,7 @@
 <div class="post-comments" *ngIf="comments.length; else emptyComments">
   <div
     class="comment-block"
+    [@comment]
     *ngFor="let comment of comments"
   >
     <div class="comment-header">

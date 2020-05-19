@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment, Post} from "../../interfaces";
 import {Subscription, timer} from "rxjs";
@@ -17,6 +17,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   comments: Comment[]
   subPost: Subscription
   subTimer: Subscription
+  width: number
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +26,13 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   ) {
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.width = event.target.innerWidth;
+  }
+
   ngOnInit(): void {
+    this.width = window.innerWidth;
     this.renderer.addClass(document.body, 'modal-open')
     this.subPost = this.route.data
       .subscribe(

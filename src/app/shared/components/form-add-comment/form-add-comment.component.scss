@@ -1,11 +1,17 @@
 @import "src/styles/skins";
 
-.form-block {
+:host {
+  @media (max-width: 767.99px) {
+    height: 160px;
+  }
+}
 
-  //form {
-  //  display: flex;
-  //  flex-direction: column;
-  //}
+.form-block {
+  @media (max-width: 767.99px) {
+    padding: 5px 5px 10px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }
 
 label,

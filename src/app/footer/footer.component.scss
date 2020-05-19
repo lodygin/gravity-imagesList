@@ -15,12 +15,16 @@
 }
 
 .text {
-  padding: 30px;
+  padding: 20px;
   font-size: 14px;
   color: $gray-color;
   font-family: var(--sub-font);
   letter-spacing: 0.3em;
   margin-right: -0.3em;
+
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
 }
 
 .line {

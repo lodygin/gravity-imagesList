@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output, Renderer2} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../../interfaces";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {PostsService} from "../../services/posts.service";
 import {delay} from "rxjs/operators";
 import {backdrop, modalWindow} from "../../modal-window.animation";

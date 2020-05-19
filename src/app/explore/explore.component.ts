@@ -2,11 +2,22 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from "../shared/interfaces";
 import {PostsService} from "../shared/services/posts.service";
 import {Subscription} from "rxjs";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss']
+  styleUrls: ['./explore.component.scss'],
+  animations: [
+    trigger('images', [
+      transition(':enter', [
+        style(
+          {transform: 'scale(0)'}
+        ),
+        animate('500ms ease-out')
+      ])
+    ])
+  ]
 })
 export class ExploreComponent implements OnInit, OnDestroy {
 
@@ -33,5 +44,6 @@ export class ExploreComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subNewPost.unsubscribe()
   }
+
 
 }

@@ -4,8 +4,8 @@
 
   <div class="container">
     <div class="explore-grid">
-      <a  [routerLink]="['/explore', 'p', post.id]" *ngFor="let post of posts" class="post-link">
-        <img src="{{ post.link }}" alt="">
+      <a [routerLink]="['/explore', 'p', post.id]" *ngFor="let post of posts" class="post-link">
+        <img [@images] src="{{ post.link }}" alt="">
       </a>
     </div>
   </div>

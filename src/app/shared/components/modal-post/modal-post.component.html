@@ -1,4 +1,4 @@
-<div class="modal-post">
+<div class="modal-post" *ngIf="width > 768; else fullPageBlock">
 
   <div
     (click)="closeModal()"
@@ -6,6 +6,7 @@
     class="backdrop"
     *ngIf="isShowComponent"
   ></div>
+
   <div class="modal" [@modalWindow] *ngIf="isShowComponent">
     <div class="content-column">
       <div class="img-block">
@@ -21,6 +22,28 @@
     </div>
   </div>
 
-
 </div>
+
+<ng-template #fullPageBlock>
+  <div class="modal-post">
+    <div class="modal" [@modalWindow] *ngIf="isShowComponent">
+
+      <div
+        (click)="closeModal()"
+        class="btn-close-ls"
+      >
+        <div></div>
+        <div></div>
+      </div>
+      <div class="img-block">
+        <img src="{{ post.link }}" alt="">
+        <small class="post-data">{{ post.postDate | date: 'longDate' }}</small>
+      </div>
+      <app-post-comments
+        [comments]="comments"
+      ></app-post-comments>
+      <app-form-add-comment></app-form-add-comment>
+    </div>
+  </div>
+</ng-template>
 
