@@ -15,8 +15,6 @@ export class ModalPostComponent implements OnInit, OnDestroy {
 
   post: Post
   comments: Comment[]
-  subPost: Subscription
-  subTimer: Subscription
   width: number
 
   constructor(
@@ -34,7 +32,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.width = window.innerWidth;
     this.renderer.addClass(document.body, 'modal-open')
-    this.subPost = this.route.data
+    this.route.data
       .subscribe(
         data => {
           this.post = data.post
@@ -45,7 +43,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.isShowComponent = false
-    this.subTimer = timer(250).subscribe(() => {
+    timer(250).subscribe(() => {
       this.router.navigate(['/explore'])
     })
 
@@ -53,7 +51,5 @@ export class ModalPostComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'modal-open')
-    this.subPost.unsubscribe()
-    this.subTimer.unsubscribe()
   }
 }
